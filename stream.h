@@ -58,6 +58,8 @@ enum mad_error {
 
 # define MAD_RECOVERABLE(error)	((error) & 0xff00)
 
+struct mad_frame;
+
 struct mad_stream {
   unsigned char const *buffer;		/* input bitstream buffer */
   unsigned char const *bufend;		/* end of buffer */
@@ -77,18 +79,21 @@ struct mad_stream {
 					/* Layer III main_data() */
   unsigned int md_len;			/* bytes in main_data */
 
+  void (*frame_cb)(struct mad_frame const *frame);
+
   int options;				/* decoding options (see below) */
   enum mad_error error;			/* error code (see above) */
 };
 
 enum {
   MAD_OPTION_IGNORECRC      = 0x0001,	/* ignore CRC errors */
-  MAD_OPTION_HALFSAMPLERATE = 0x0002	/* generate PCM at 1/2 sample rate */
+  MAD_OPTION_HALFSAMPLERATE = 0x0002,	/* generate PCM at 1/2 sample rate */
 # if 0  /* not yet implemented */
   MAD_OPTION_LEFTCHANNEL    = 0x0010,	/* decode left channel only */
   MAD_OPTION_RIGHTCHANNEL   = 0x0020,	/* decode right channel only */
   MAD_OPTION_SINGLECHANNEL  = 0x0030	/* combine channels */
 # endif
+  MAD_OPTION_NOCHANNEL      = 0x0040  /* do not synthesize any channels */
 };
 
 void mad_stream_init(struct mad_stream *);

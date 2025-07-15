@@ -62,6 +62,8 @@ struct mad_header {
   int private_bits;			/* private bits (see below) */
 
   mad_timer_t duration;			/* audio playing time of frame */
+
+  void *extra;        /* layer-specific metadata */
 };
 
 struct mad_frame {
