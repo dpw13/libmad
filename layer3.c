@@ -2570,7 +2570,7 @@ int mad_layer_III(struct mad_stream *stream, struct mad_frame *frame)
   unsigned int si_len, data_bitlen, md_len;
   unsigned int frame_space, frame_used, frame_free;
   struct mad_bitptr ptr, bufend_ptr;
-  struct sideinfo si;
+  static struct sideinfo si;
   enum mad_error error;
   int result = 0;
 

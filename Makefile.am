@@ -37,7 +37,7 @@ minimad_LDADD =		libmad.la
 EXTRA_DIST =		mad.h.sed Version_script libmad.def libmad.exports \
 			CHANGES COPYRIGHT CREDITS README TODO VERSION
 
-exported_headers =	version.h fixed.h bit.h timer.h stream.h frame.h  \
+exported_headers =	version.h fixed.h bit.h timer.h stream.h frame.h layer3.h \
 			synth.h decoder.h
 
 headers =		$(exported_headers)  \
