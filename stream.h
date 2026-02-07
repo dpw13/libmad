@@ -88,6 +88,7 @@ struct mad_stream {
 enum {
   MAD_OPTION_IGNORECRC      = 0x0001,	/* ignore CRC errors */
   MAD_OPTION_HALFSAMPLERATE = 0x0002,	/* generate PCM at 1/2 sample rate */
+  MAD_OPTION_FORCECRC       = 0x0004,	/* always calculate CRC */
 # if 0  /* not yet implemented */
   MAD_OPTION_LEFTCHANNEL    = 0x0010,	/* decode left channel only */
   MAD_OPTION_RIGHTCHANNEL   = 0x0020,	/* decode right channel only */

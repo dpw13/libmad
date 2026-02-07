@@ -2609,6 +2609,12 @@ int mad_layer_III(struct mad_stream *stream, struct mad_frame *frame)
 
   /* check CRC word */
 
+  if (frame->options & MAD_OPTION_FORCECRC) {
+    /* Calculate CRC for *just* this frame. */
+    header->crc_check =
+      mad_bit_crc(stream->ptr, si_len * CHAR_BIT, 0xFFFF);
+  }
+
   if (header->flags & MAD_FLAG_PROTECTION) {
     header->crc_check =
       mad_bit_crc(stream->ptr, si_len * CHAR_BIT, header->crc_check);
